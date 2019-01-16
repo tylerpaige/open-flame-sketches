@@ -30,5 +30,11 @@ module.exports = [
     path : 'collapsing-windows.html',
     js : './src/sketches/collapsing-windows/js/index.js',
     template : './src/sketches/collapsing-windows/templates/index.hbs'
+  },
+  {
+    name : 'flame screen',
+    path : 'flame-screen.html',
+    js : './src/sketches/flame-screen/index.js',
+    template : './src/sketches/flame-screen/template.hbs'
   }
 ]
