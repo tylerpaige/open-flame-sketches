@@ -74,3 +74,9 @@ I have, therefore, included a simple snippet for shortening the reference. Just 
 
 <h1>{{data.heading}}</h1>
 ```
+
+## Updating github pages
+
+```sh
+git subtree push --prefix dist origin gh-pages
+```
