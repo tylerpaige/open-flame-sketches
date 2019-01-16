@@ -130,8 +130,8 @@ $wavePortion : $waveDuration / $totalDuration * 100;
 @keyframes shake {
   @for $i from 1 through $wavePortion {
     $translateY : sineArc($i, $wavePortion) * -1 * $maxAmplitude;
-
-    #{$i}% {
+    $percentage : $i * 1%;
+    #{$percentage} {
       transform: translateY(#{$translateY});
     }
   }

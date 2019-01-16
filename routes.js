@@ -24,5 +24,11 @@ module.exports = [
     path : 'slice-n-dice-candy.html',
     js : './src/sketches/slice-n-dice/js/candy.js',
     template : './src/sketches/slice-n-dice/templates/index.hbs'
+  },
+  {
+    name : 'collapsing windows',
+    path : 'collapsing-windows.html',
+    js : './src/sketches/collapsing-windows/js/index.js',
+    template : './src/sketches/collapsing-windows/templates/index.hbs'
   }
 ]
