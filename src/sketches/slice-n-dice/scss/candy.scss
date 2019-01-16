@@ -1,0 +1,203 @@
+@import '~reset-css';
+@import '~mathsass';
+
+$numberOfPanels : 50;
+$colorPairs : (#B95E82, #B95E52), (#54ACC7, #9DB1FC), (#ADA13E, #5EA13E), (#173AFF, #9B3AFF);
+
+@mixin fullbleed() {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  @include fullbleed();
+}
+
+.panel,
+.panel__inner {
+  @include fullbleed();
+}
+
+.panel {
+  transform: scale(1 / $numberOfPanels, 1);
+  overflow: hidden;
+  z-index: 2;
+}
+.panel__inner {
+  transform: scale($numberOfPanels, 1);
+}
+.panel__animater {
+  @include fullbleed();
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  @include fullbleed();
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+/*
+=====================
+POSITIONING
+=====================
+*/
+@for $n from 1 through $numberOfPanels {
+  .panel:nth-child(#{$n}) {
+    &,
+    & .panel__inner {
+      transform-origin: (100% * ($n - 1) / ($numberOfPanels - 1)) 50%;
+    }
+  }
+}
+
+/*
+=====================
+ANIMATIONS
+=====================
+*/
+/*
+if the total duration is 3 seconds,
+and the delay per panel is 0.1s,
+and there are 50 panels,
+the 50th panel begins 5s after the first one. 
+
+so if i want the wave to go across the entire screen,
+then wait t seconds, what do all the various pieces have to be?
+
+the wave moving across the screen should take 3s, let's say.
+the means the $delay * $numberOfPanels + $waveDuration = 3
+
+Then we should wait 3s before looping...
+
+so the totalDuration should be...
+$waitTime + $waveDurtion + $delay * $numberOfPanels
+*/
+
+$delay: 0.1s;
+$waveDuration : 5s;
+$waitTime: 5;
+$maxAmplitude : 30%;
+
+$totalDuration : $waitTime + $waveDuration + $delay * $numberOfPanels;
+$wavePortion : $waveDuration / $totalDuration * 100;
+
+@function dampedSineWave($x) {
+  // @return sin(pow($x - $xOffset, 2)) / pow($x, 1.25);
+  // @return sin($x) / $x;
+  $a : 2.4;
+  $b : 1;
+  $c : 10;
+  $d : 0;
+  @return ($a / ($b + $x)) * sin((2 * $PI / $c) * $x) + $d; 
+}
+@function sineWave($i, $totalSteps : 100) {
+  $x : ($i / $totalSteps) * $PI * 2;
+  @return sin($x);
+}
+@function sineArc($i, $totalSteps : 100) {
+  $x : ($i / $totalSteps) * $PI;
+  @return sin($x);
+}
+.panel__animater {
+  animation-name: shake;
+  animation-duration: $totalDuration;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-timing-function: linear;
+}
+@for $n from 1 through $numberOfPanels {
+  .panel:nth-child(#{$n}) .panel__animater {
+    animation-delay: $n * $delay;
+  }
+}
+
+@keyframes shake {
+  @for $i from 1 through $wavePortion {
+    $translateY : sineArc($i, $wavePortion) * -1 * $maxAmplitude;
+
+    #{$i}% {
+      transform: translateY(#{$translateY});
+    }
+  }
+}
+
+/*
+=====================
+COLOR CODING
+=====================
+*/
+
+// @for $n from 1 through $numberOfPanels {
+//   $index : ($n % length($colorPairs)) + 1;
+//   $colorPair : nth($colorPairs, $index);
+//   $colorA : nth($colorPair, 1);
+//   $colorB : nth($colorPair, 2);
+//   .panel:nth-child(#{$n}) {
+//     background-color: $colorA;
+//   }
+// }
+@function stripes($list) {
+  $value : ();
+  @for $i from 1 through length($list) {
+    $color : nth($list, $i);
+    $start : 100% / length($list) * ($i - 1);
+    $end : 100% / length($list) * $i;
+    $rampSegment : $color $start, $color $end;
+    $value : append($value, $rampSegment, comma);
+  }
+  @return $value;
+}
+@function colorsToGradient() {
+  $Acolors : ();
+  @for $n from 1 through length($colorPairs) {
+    $colorPair : nth($colorPairs, $n);
+    $colorA : nth($colorPair, 1);
+    $Acolors : append($Acolors, $colorA)
+  }
+  $value : stripes($Acolors);
+  @return $value;
+}
+.container {
+  background-image: repeating-linear-gradient(90deg, #{colorsToGradient()});
+  background-repeat: repeat;
+  background-size: (100% / $numberOfPanels * length($colorPairs)) 100%;
+}
+
+/*
+=====================
+TYPOGRAPHY
+=====================
+*/
+
+.container {
+  font-family: sans-serif;
+  text-align: center;
+}
+h1 {
+  font-size: 13.5vw;
+  font-weight: bold;
+}
+h3 { 
+  font-size: 5vw;
+  font-weight: bold;
+}
+span {
+  background-color: #4ae4c3;
+  padding: 0.23em 0.35em 0;
+}
