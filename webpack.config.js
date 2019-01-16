@@ -2,6 +2,8 @@ const routes = require('./routes.js');
 const path = require('path');
 const fs = require('fs');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackInlineSVGPlugin = require('html-webpack-inline-svg-plugin');
 
 const entry = routes.reduce((acc, { name, js }) => {
   acc[name] = path.resolve(__dirname, js);
@@ -27,6 +29,16 @@ htmls.push(
     routes
   })
 );
+const imgs = routes.reduce((acc, { img }) => {
+  if (img) {
+    acc.push({
+      from: img,
+      to : './'
+    });
+  };
+
+  return acc;
+}, []);
 
 module.exports = {
   entry: entry,
@@ -82,9 +94,9 @@ module.exports = {
         use: [
           {
             loader: 'file-loader',
-            query: {
+            options: {
               name: '[name].[ext]',
-              publicPath: '',
+              publicPath: './',
               emitFile: true
             }
           }
@@ -93,7 +105,7 @@ module.exports = {
     ]
   },
   devtool: 'source-map',
-  plugins: [...htmls],
+  plugins: [...htmls, new CopyWebpackPlugin(imgs), new HtmlWebpackInlineSVGPlugin()],
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,

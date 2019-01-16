@@ -23,9 +23,15 @@
     "webpack-dev-server": "^3.1.14"
   },
   "scripts": {
-    "start": "webpack-dev-server",
+    "start:dev": "webpack-dev-server",
+    "watch" : "webpack --watch --progress --colors",
+    "serve" : "http-server dist -c-1",
     "build": "webpack"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "copy-webpack-plugin": "^4.6.0",
+    "html-webpack-inline-svg-plugin": "^1.2.4"
+  }
 }
