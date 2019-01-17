@@ -3,6 +3,8 @@ body {
   background: #60B28F;
 }
 
+$dividingLine : (46 / 76);
+
 .grid {
   position: absolute;
   top: 0;
@@ -15,13 +17,21 @@ body {
 }
 .row {
   width: 100%;
-  height: 50vh;
   
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
 
   overflow: hidden;
+
+  &:first-child {
+    height: $dividingLine * 100vh;
+    // height: 69.526vh;
+  }
+  &:last-child {
+    height: (1 - $dividingLine) * 100vh;
+    // height: 100vh - 69.526vh;
+  }
 }
 .cell {
   flex-grow: 1;
