@@ -1,0 +1,128 @@
+
+$dividingLine : (46 / 76);
+
+.grid {
+  flex: 1 1 75%;
+  width: 75%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.row {
+  width: 100%;
+  
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+
+  overflow: hidden;
+
+  &:first-child {
+    height: $dividingLine * 100vh;
+    // height: 69.526vh;
+  }
+  &:last-child {
+    height: (1 - $dividingLine) * 100vh;
+    // height: 100vh - 69.526vh;
+  }
+}
+.cell {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 11%;
+  // overflow: hidden;
+
+  position: relative;
+  margin: 0 5px;
+
+  animation-duration: 5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+.cell--n {
+  margin-right: 25px
+}
+.cell--f {
+  margin-left: 25px;
+}
+.letter {
+  position: absolute;
+  left: 0;
+  width: 100%;
+
+  .row:first-child & {
+    transform-origin: top;
+    top: 0;
+  }
+  .row:last-child & {
+    transform-origin: bottom;
+    bottom: 0;
+  }
+  // height: 200%;
+}
+
+
+.row .cell {
+  animation-duration: 20s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  // animation-timing-function: cubic-bezier(.58,.68,.3,1);
+}
+.row:first-child .cell {
+  animation-name: squishTop;
+  transform-origin: bottom left;
+}
+.row:last-child .cell {
+  animation-name: squishBottom;
+  transform-origin: top left;
+}
+.letter svg path {
+  fill: #F5BF41;
+  stroke: #6EF17E;
+  stroke-width: 1px;
+}
+
+@for $i from 1 through 9 {
+  $delay : $i * 0.5s;
+  .row:first-child .cell:nth-child(#{$i}) {
+    animation-delay: $delay;
+  }
+  .row:last-child .cell:nth-child(#{$i}) {
+    animation-delay: $delay;
+  }
+}
+
+
+@keyframes squishTop {
+  0% {
+    transform: scaleY(1);
+  }
+  25% {
+    transform: scaleY(0.1);
+    // transform: scaleY(0.1) rotate(-3deg);
+    // transform: scaleY(0.1) skewX(3deg);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+@keyframes squishBottom {
+  0% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+  75% {
+    transform: scaleY(0.1);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
