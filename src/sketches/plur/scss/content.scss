@@ -1,5 +1,4 @@
 main {
-  width: 25%;
   flex: 1 1 25%;
   padding: 10px;
   background: #F5BF41;
@@ -10,6 +9,12 @@ main {
 
   font-family: sans-serif;
   text-align: center;
+}
+@media screen and (max-aspect-ratio : 1 / 1) {
+  main {
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
 }
 
 h1 {

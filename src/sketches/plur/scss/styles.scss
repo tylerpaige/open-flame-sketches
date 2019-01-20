@@ -1,8 +1,18 @@
 @import '~reset-css';
+html,
+body {
+  height: 100vh;
+}
 body {
   background: #60B28F;
   display: flex;
   flex-direction: row;
+}
+
+@media screen and (max-aspect-ratio : 1 / 1) {
+  body {
+    flex-direction: column;
+  }
 }
 
 @import 'grid';

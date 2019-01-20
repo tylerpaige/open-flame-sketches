@@ -3,8 +3,6 @@ $dividingLine : (46 / 76);
 
 .grid {
   flex: 1 1 75%;
-  width: 75%;
-  height: 100%;
 
   display: flex;
   flex-direction: row;
@@ -20,12 +18,10 @@ $dividingLine : (46 / 76);
   overflow: hidden;
 
   &:first-child {
-    height: $dividingLine * 100vh;
-    // height: 69.526vh;
+    height: $dividingLine * 100%;
   }
   &:last-child {
-    height: (1 - $dividingLine) * 100vh;
-    // height: 100vh - 69.526vh;
+    height: (1 - $dividingLine) * 100%;
   }
 }
 .cell {
