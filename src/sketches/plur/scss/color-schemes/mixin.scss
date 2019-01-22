@@ -1,0 +1,30 @@
+@mixin colorScheme(
+  $panelBackground,
+  $panelTextColor,
+  $artBackground,
+  $letterColor,
+  $letterStrokeColor
+) {
+
+  main {
+    background: $panelBackground;
+    color: $panelTextColor;
+  }
+
+  .grid {
+    background-color: $artBackground;
+  }
+
+  .letter svg path {
+    fill: $letterColor;
+    stroke: $letterStrokeColor;
+  }
+
+}
+
+
+/*
+
+repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.3) 0, rgba(255, 255, 255, 0.3) 1px, transparent 1px, transparent 8px), repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.3) 0, rgba(255, 255, 255, 0.3) 1px, transparent 1px, transparent 8px)
+
+*/

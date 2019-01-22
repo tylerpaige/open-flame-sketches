@@ -7,10 +7,17 @@ module.exports = [
     img : './src/sketches/kissers/img'
   },
   {
-    name : 'plur',
+    name : 'plur (default)',
     path : 'plur.html',
     js : './src/sketches/plur/js/index.js',
-    template : './src/sketches/plur/templates/template.hbs',
+    template : './src/sketches/plur/templates/base.hbs',
+    img : './src/sketches/plur/img/'
+  },
+  {
+    name : 'plur (candy flames)',
+    path : 'plur-candy.html',
+    js : './src/sketches/plur/js/index.js',
+    template : './src/sketches/plur/templates/flames.hbs',
     img : './src/sketches/plur/img/'
   },
   {

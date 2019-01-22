@@ -1,0 +1,62 @@
+//Deep saturations
+  //warm hues 
+  $red: #BA4848;
+  $orange: #EF9124;
+  $yellowGreen: #d0b443;
+  //cool hues
+  $cobaltBlue: #064bd3;
+  $powderBlue: #74b6d0;
+  $seaGreen: #17a576;
+
+//Light saturations
+  //warm hues
+  $palePink: #e5cad1;
+  $palePeach: #e29f8f; //might need to be refined
+  //cool hues
+  $paleSeafoam: #a5c69c;
+  $paleSlate: #8493b1;
+  $paleViolet: #c9c7ed;
+
+$black: #333;
+$beige: #ebede6;
+
+
+$numberOfLetters: 9;
+
+body.flames {
+  background: $beige;
+
+  /*
+    Top row will be warm hues
+  */
+  @for $n from 1 through $numberOfLetters {
+    $warmColors: ($red, $orange, $yellowGreen, $palePink, $palePeach);
+    $warmIndex : ($n % length($warmColors)) + 1;
+    // $warmIndex : random($limit: length($warmColors));
+    $warmColor: nth($warmColors, $warmIndex);
+
+    $coolColors: ($cobaltBlue, $powderBlue, $seaGreen, $paleSeafoam, $paleSlate, $paleViolet);
+    $coolIndex : ($n % length($coolColors)) + 1;
+    // $coolIndex : random($limit: length($coolColors));
+    $coolColor: nth($coolColors, $coolIndex);
+
+
+    .row:first-child .cell:nth-child(#{$n}) .letter svg path {
+      fill: $warmColor;
+      stroke-width: 2px;
+      stroke: $black;
+    }
+
+    .row:last-child .cell:nth-child(#{$n}) .letter svg path {
+      fill: $coolColor;
+      stroke-width: 2px;
+      stroke: $black;
+    }
+  }
+  
+  
+  /*
+    Bottom row will be warm hues
+  */
+  
+}
