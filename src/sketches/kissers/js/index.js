@@ -15,23 +15,25 @@ const getRandomHueRotation = () => {
 
 const init = () => {
   const left = document.getElementById('left');
-  const right = document.getElementById('right');
+  const rightTop = document.getElementById('right-top');
+  const rightBottom = document.getElementById('right-bottom');
   const thresholdForContact = 0.05;
+  const overlapArea = 1.17;
   window.addEventListener('mousemove', e => {
     const distanceFromCenter = Math.abs(e.clientX / window.innerWidth - 0.5) * 2;
-
+  
     if (distanceFromCenter < thresholdForContact) {
       left.style.filter = `hue-rotate(${getRandomHueRotation()})`;
-      right.style.filter = `hue-rotate(${getRandomHueRotation()})`;
-      // left.style.backgroundColor = getRandomColor();
-      // right.style.backgroundColor = getRandomColor();
+      const rightHue = getRandomHueRotation();
+      rightTop.style.filter = `hue-rotate(${rightHue})`;
+      rightBottom.style.filter = `hue-rotate(${rightHue})`;
     }
 
-    const overlapArea = 1.145;
     const leftTranslate = (distanceFromCenter * overlapArea + (1 - overlapArea)) * -100;
     const rightTranslate = (distanceFromCenter * overlapArea + (1 - overlapArea)) * 100;
     left.style.transform = `translateX(${leftTranslate}%)`;
-    right.style.transform = `translateX(${rightTranslate}%)`;
+    rightTop.style.transform = `translateX(${rightTranslate}%)`;
+    rightBottom.style.transform = `translateX(${rightTranslate}%)`;
 
   });
 };
