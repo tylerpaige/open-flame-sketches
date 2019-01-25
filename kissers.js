@@ -806,27 +806,61 @@ var getRandomHueRotation = function getRandomHueRotation() {
   return "".concat(randomInteger(0, 360), "deg");
 };
 
+var moveTogether = function moveTogether(els, thresholdForContact, overlapArea, distanceFromCenter) {
+  if (distanceFromCenter < thresholdForContact) {
+    els.left.style.filter = "hue-rotate(".concat(getRandomHueRotation(), ")");
+    var rightHue = getRandomHueRotation();
+    els.rightTop.style.filter = "hue-rotate(".concat(rightHue, ")");
+    els.rightBottom.style.filter = "hue-rotate(".concat(rightHue, ")");
+  }
+
+  var leftTranslate = (distanceFromCenter * overlapArea + (1 - overlapArea)) * -100;
+  var rightTranslate = (distanceFromCenter * overlapArea + (1 - overlapArea)) * 100;
+  els.left.style.transform = "translateX(".concat(leftTranslate, "%)");
+  els.rightTop.style.transform = "translateX(".concat(rightTranslate, "%)");
+  els.rightBottom.style.transform = "translateX(".concat(rightTranslate, "%)");
+};
+
 var init = function init() {
   var left = document.getElementById('left');
   var rightTop = document.getElementById('right-top');
   var rightBottom = document.getElementById('right-bottom');
+  var els = {
+    left: left,
+    rightTop: rightTop,
+    rightBottom: rightBottom
+  };
   var thresholdForContact = 0.05;
   var overlapArea = 1.17;
   window.addEventListener('mousemove', function (e) {
     var distanceFromCenter = Math.abs(e.clientX / window.innerWidth - 0.5) * 2;
+    moveTogether(els, thresholdForContact, overlapArea, distanceFromCenter);
+  });
+  var interval;
+  var mobileDistanceMock = 1;
+  var shouldReset = false;
+  window.addEventListener('touchstart', function () {
+    interval = setInterval(function () {
+      moveTogether(els, thresholdForContact, overlapArea, mobileDistanceMock);
 
-    if (distanceFromCenter < thresholdForContact) {
-      left.style.filter = "hue-rotate(".concat(getRandomHueRotation(), ")");
-      var rightHue = getRandomHueRotation();
-      rightTop.style.filter = "hue-rotate(".concat(rightHue, ")");
-      rightBottom.style.filter = "hue-rotate(".concat(rightHue, ")");
+      if (mobileDistanceMock > 0) {
+        mobileDistanceMock -= 0.05;
+      } else {
+        shouldReset = true;
+      }
+    }, 100);
+  });
+  window.addEventListener('touchend', function () {
+    clearInterval(interval);
+
+    if (shouldReset) {
+      mobileDistanceMock = 1;
+      shouldReset = false;
     }
-
-    var leftTranslate = (distanceFromCenter * overlapArea + (1 - overlapArea)) * -100;
-    var rightTranslate = (distanceFromCenter * overlapArea + (1 - overlapArea)) * 100;
-    left.style.transform = "translateX(".concat(leftTranslate, "%)");
-    rightTop.style.transform = "translateX(".concat(rightTranslate, "%)");
-    rightBottom.style.transform = "translateX(".concat(rightTranslate, "%)");
+  });
+  window.addEventListener('touchcancel', function () {
+    clearInterval(interval);
+    mobileDistanceMock = 1;
   });
 };
 
