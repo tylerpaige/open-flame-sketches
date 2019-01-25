@@ -9,6 +9,9 @@ body {
 body {
   background: tan;
 }
+* {
+  user-select: none;
+}
 .faces {
   position: absolute;
   top: 0;
