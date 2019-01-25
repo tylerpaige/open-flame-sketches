@@ -795,4 +795,4 @@ if(false) {}
 /***/ })
 
 /******/ });
-//# sourceMappingURL=plur (default).js.map
+//# sourceMappingURL=plur (red and blue).js.map
