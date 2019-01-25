@@ -10,6 +10,7 @@ body {
   background: tan;
 }
 * {
+  box-sizing: border-box;
   user-select: none;
 }
 .faces {
@@ -60,6 +61,8 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 0 20px;
+  box-sizing: border-box;
 
   font-family: sans-serif;
 }
@@ -81,6 +84,7 @@ h3 {
   margin-bottom: 1em;
   letter-spacing: 0.15em;
   margin-top: 1px;
+  text-align: center;
 }
 
 p {
