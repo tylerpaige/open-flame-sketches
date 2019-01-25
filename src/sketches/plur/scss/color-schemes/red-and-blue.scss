@@ -1,0 +1,63 @@
+body.red-and-blue {
+  @include colorScheme(
+    #c1b6fd,
+    #000da4,
+    #c9431f,
+    #c3c1e5,
+    #000da4
+  );
+
+  .letter svg path {
+    animation-name: shimmerText;
+    animation-duration: 5s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    stroke-width: 0.6px;
+  }
+  
+  @for $i from 1 through 9 {
+    $delay : $i * 1s;
+    .cell:nth-child(#{$i}) .letter svg path {
+      animation-delay: $delay;
+    }
+  }
+
+  .grid {
+    animation-name: shimmerArtBackground;
+    animation-duration: 5s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+  }
+}
+
+@keyframes shimmerText {
+  0% {
+    fill: #c3c1e5
+  }
+  100% {
+    fill: #C1B5FF;
+  }
+}
+// @keyframes shimmerText {
+//   0% {
+//     fill: #c3c1e5
+//   }
+//   33% {
+//     fill: #c1e1e5;
+//   }
+//   66% {
+//     fill: #BFA5CE;
+//   }
+//   100% {
+//     fill: #c3c1e5;
+//   }
+// }
+
+@keyframes shimmerArtBackground {
+  0% {
+    background-color: #c9431f;
+  }
+  100% {
+    background-color: #BC4745;
+  }
+}

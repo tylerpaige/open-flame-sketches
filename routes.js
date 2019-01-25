@@ -17,8 +17,13 @@ module.exports = [
     name : 'plur (candy flames)',
     path : 'plur-candy.html',
     js : './src/sketches/plur/js/index.js',
-    template : './src/sketches/plur/templates/flames.hbs',
-    img : './src/sketches/plur/img/'
+    template : './src/sketches/plur/templates/flames.hbs'
+  },
+  {
+    name : 'plur (red and blue)',
+    path : 'plur-red-blue.html',
+    js : './src/sketches/plur/js/index.js',
+    template : './src/sketches/plur/templates/red-and-blue.hbs'
   },
   {
     name : 'slice-n-dice (dayglow)',
