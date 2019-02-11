@@ -25,31 +25,31 @@ body {
 }
 .face {
   position: absolute;
-  width: 50%;
-  height: 100%;
+  width: 70.79vh;
+  height: 100vh;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
 }
 
 .face--left {
-  left: 0;
+  left: -70.79vh;
   transform: translateX(-100%);
-  background-image: url('../img/left-v2a.png');
+  background-image: url('../img/left-v3-custom-feathering.png');
   background-position: right center;
   z-index: 2;
 }
 .face--right-top,
 .face--right-bottom {
-  right: 0;
+  right: -70.79vh;
   transform: translateX(100%);
   background-position: left center;
 }
 .face--right-top {
-  background-image: url('../img/right-top-v2a.png');
+  background-image: url('../img/right-top-v3-custom-feathering.png');
   z-index: 3;
 }
 .face--right-bottom {
-  background-image: url('../img/right-bottom-v2a.png');
+  background-image: url('../img/right-bottom-v3-custom-feathering.png');
   z-index: 1;
 }
 

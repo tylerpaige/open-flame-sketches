@@ -1,4 +1,5 @@
 import '../scss/styles.scss';
+import { throttle } from 'lodash';
 
 const randomInteger = (min, max) => {
   return Math.floor(Math.random()*(max-min+1)+min);
@@ -11,22 +12,33 @@ const getRandomColor = () => {
 
 const getRandomHueRotation = () => {
   return `${randomInteger(0, 360)}deg`;
-}
+};
 
-const moveTogether = (els, thresholdForContact, overlapArea, distanceFromCenter) => {
+const swapColors = throttle((els, distanceFromCenter, thresholdForContact) => {
   if (distanceFromCenter < thresholdForContact) {
     els.left.style.filter = `hue-rotate(${getRandomHueRotation()})`;
     const rightHue = getRandomHueRotation();
     els.rightTop.style.filter = `hue-rotate(${rightHue})`;
     els.rightBottom.style.filter = `hue-rotate(${rightHue})`;
   }
+}, 100);
 
-  const leftTranslate = (distanceFromCenter * overlapArea + (1 - overlapArea)) * -100;
-  const rightTranslate = (distanceFromCenter * overlapArea + (1 - overlapArea)) * 100;
-  els.left.style.transform = `translateX(${leftTranslate}%)`;
-  els.rightTop.style.transform = `translateX(${rightTranslate}%)`;
-  els.rightBottom.style.transform = `translateX(${rightTranslate}%)`;
+const moveTogether = (els, thresholdForContact, overlapArea, distanceFromCenter) => {
+  
+  swapColors(els, distanceFromCenter, thresholdForContact);
+  const imgWidthInVw = (window.innerHeight * .7078) / window.innerWidth * 100;
+  const overlap = overlapArea * imgWidthInVw;
+  const leftTranslate = (1 - distanceFromCenter) * (50 + overlap);
+  const rightTranslate = -1 * (1 - distanceFromCenter) * (50 + overlap);
+  els.left.style.transform = `translateX(${leftTranslate}vw)`;
+  els.rightTop.style.transform = `translateX(${rightTranslate}vw)`;
+  els.rightBottom.style.transform = `translateX(${rightTranslate}vw)`;
 };
+
+const handleMouseMove = throttle((e, els, thresholdForContact, overlapArea) => {
+  const distanceFromCenter = Math.abs(e.clientX / window.innerWidth - 0.5) * 2;
+  moveTogether(els, thresholdForContact, overlapArea, distanceFromCenter);
+}, 100);
 
 
 const init = () => {
@@ -35,10 +47,10 @@ const init = () => {
   const rightBottom = document.getElementById('right-bottom');
   const els = { left, rightTop, rightBottom };
   const thresholdForContact = 0.05;
-  const overlapArea = 1.17;
+  const faceAspectRatio = 475 / 671;
+  const overlapArea = 0.12;
   window.addEventListener('mousemove', e => {
-    const distanceFromCenter = Math.abs(e.clientX / window.innerWidth - 0.5) * 2;
-    moveTogether(els, thresholdForContact, overlapArea, distanceFromCenter);
+    handleMouseMove(e, els, thresholdForContact, overlapArea)
   });
 
   let interval;
