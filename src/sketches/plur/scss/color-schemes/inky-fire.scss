@@ -1,0 +1,29 @@
+$red: #FD4715;
+$orange: #FD9900;
+$pink: #F284C4;
+$white: #FBF5E2;
+
+$colors: $red, $orange, $pink, $white;
+
+body.inky-flames {
+  background: #C4CDCE;
+  
+  @for $n from 1 through 9 {
+    $color : nth($colors, $n % length($colors) + 1);
+    .cell:nth-child(#{$n}) .letter svg path {
+      fill: $color;
+    }
+  }
+
+  .cell .letter svg path {
+    stroke: blue;
+    stroke-width: 2px;
+  }
+
+
+  main {
+    background: blue;
+    color: white;
+  }
+
+}

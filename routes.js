@@ -20,6 +20,12 @@ module.exports = [
     template : './src/sketches/plur/templates/flames.hbs'
   },
   {
+    name : 'plur (inky flames)',
+    path : 'plur-inky.html',
+    js : './src/sketches/plur/js/index.js',
+    template : './src/sketches/plur/templates/inky-flames.hbs'
+  },
+  {
     name : 'plur (red and blue)',
     path : 'plur-red-blue.html',
     js : './src/sketches/plur/js/index.js',
