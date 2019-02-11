@@ -1,13 +1,11 @@
 import '../scss/styles.scss';
 import { throttle } from 'lodash';
 
+let RAF;
+let SHOULD_RESET;
+
 const randomInteger = (min, max) => {
   return Math.floor(Math.random()*(max-min+1)+min);
-};
-
-const getRandomColor = () => {
-  const channels = Array.from({length : 3}).map(_ => randomInteger(0, 255));
-  return `rgb(${channels.join(',')})`;
 };
 
 const getRandomHueRotation = () => {
@@ -40,6 +38,18 @@ const handleMouseMove = throttle((e, els, thresholdForContact, overlapArea) => {
   moveTogether(els, thresholdForContact, overlapArea, distanceFromCenter);
 }, 100);
 
+const mobileLoop = (startTime, endTime, els, thresholdForContact, overlapArea) => {
+  const now = new Date().getTime();
+  const distance = 1 - (now - startTime) / (endTime - startTime);
+  const resetStartTime = now >= endTime ? now : startTime;
+  const resetEndTime = now >= endTime ? now + 2000 : endTime;
+  moveTogether(els, thresholdForContact, overlapArea, distance);
+
+  RAF = requestAnimationFrame(() => {
+    mobileLoop(resetStartTime, resetEndTime, els, thresholdForContact, overlapArea)
+  });
+}
+
 
 const init = () => {
   const left = document.getElementById('left');
@@ -55,32 +65,19 @@ const init = () => {
     handleMouseMove(e, els, thresholdForContact, overlapArea)
   });
 
-  let interval;
-  let mobileDistanceMock = 1;
-  let shouldReset = false;
   window.addEventListener('touchstart', () => {
-    interval = setInterval(() => {
-      moveTogether(els, thresholdForContact, overlapArea, mobileDistanceMock);
-      if (mobileDistanceMock > 0) {
-        mobileDistanceMock -= 0.05;
-      } else {
-        shouldReset = true;
-      }
-    }, 100);
+    const startTime = new Date().getTime();
+    const duration = 2000;
+    const endTime = startTime + duration;
+    mobileLoop(startTime, endTime, els, thresholdForContact, overlapArea);
   });
 
   window.addEventListener('touchend', () => {
-    clearInterval(interval);
-
-    if (shouldReset) {
-      mobileDistanceMock = 1;
-      shouldReset = false;
-    }
+    cancelAnimationFrame(RAF);
   });
 
   window.addEventListener('touchcancel', () => {
-    clearInterval(interval);
-    mobileDistanceMock = 1;
+    cancelAnimationFrame(RAF);
   });
 
 };

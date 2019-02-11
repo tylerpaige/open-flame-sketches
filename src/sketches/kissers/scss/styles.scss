@@ -24,6 +24,7 @@ body {
   mix-blend-mode: difference;
   pointer-events: none;
   user-select: none;
+  overflow: hidden;
 }
 .face {
   position: absolute;
