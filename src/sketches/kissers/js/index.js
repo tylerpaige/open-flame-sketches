@@ -14,8 +14,8 @@ const getRandomHueRotation = () => {
   return `${randomInteger(0, 360)}deg`;
 };
 
-const swapColors = throttle((els, distanceFromCenter, thresholdForContact) => {
-  if (distanceFromCenter < thresholdForContact) {
+const swapColors = throttle((els, distanceFromCenter, thresholdForContact, force = false) => {
+  if (force || distanceFromCenter < thresholdForContact) {
     els.left.style.filter = `hue-rotate(${getRandomHueRotation()})`;
     const rightHue = getRandomHueRotation();
     els.rightTop.style.filter = `hue-rotate(${rightHue})`;
@@ -48,6 +48,9 @@ const init = () => {
   const els = { left, rightTop, rightBottom };
   const thresholdForContact = 0.05;
   const overlapArea = 0.1;
+
+  swapColors(els, 0, thresholdForContact, true);
+
   window.addEventListener('mousemove', e => {
     handleMouseMove(e, els, thresholdForContact, overlapArea)
   });
