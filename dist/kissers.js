@@ -96,12 +96,12 @@
 exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Imports
 var urlEscape = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/url-escape.js */ "./node_modules/css-loader/dist/runtime/url-escape.js");
-var ___CSS_LOADER_URL___0___ = urlEscape(__webpack_require__(/*! ../img/left-v3-custom-feathering.png */ "./src/sketches/kissers/img/left-v3-custom-feathering.png"));
-var ___CSS_LOADER_URL___1___ = urlEscape(__webpack_require__(/*! ../img/right-top-v3-custom-feathering.png */ "./src/sketches/kissers/img/right-top-v3-custom-feathering.png"));
-var ___CSS_LOADER_URL___2___ = urlEscape(__webpack_require__(/*! ../img/right-bottom-v3-custom-feathering.png */ "./src/sketches/kissers/img/right-bottom-v3-custom-feathering.png"));
+var ___CSS_LOADER_URL___0___ = urlEscape(__webpack_require__(/*! ../img/left-white-bg.png */ "./src/sketches/kissers/img/left-white-bg.png"));
+var ___CSS_LOADER_URL___1___ = urlEscape(__webpack_require__(/*! ../img/right-top-white-bg.png */ "./src/sketches/kissers/img/right-top-white-bg.png"));
+var ___CSS_LOADER_URL___2___ = urlEscape(__webpack_require__(/*! ../img/right-white-bg.png */ "./src/sketches/kissers/img/right-white-bg.png"));
 
 // Module
-exports.push([module.i, "/* http://meyerweb.com/eric/tools/css/reset/\n   v4.0 | 20180602\n   License: none (public domain)\n*/\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmain, menu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline; }\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, main, menu, nav, section {\n  display: block; }\n\n/* HTML5 hidden-attribute fix for newer browsers */\n*[hidden] {\n  display: none; }\n\nbody {\n  line-height: 1; }\n\nol, ul {\n  list-style: none; }\n\nblockquote, q {\n  quotes: none; }\n\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: '';\n  content: none; }\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0; }\n\nhtml,\nbody {\n  height: 100%;\n  width: 100vw;\n  overflow: hidden; }\n\nbody {\n  background: tan; }\n\n* {\n  box-sizing: border-box;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none; }\n\n.faces {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  mix-blend-mode: difference;\n  pointer-events: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none; }\n\n.face {\n  position: absolute;\n  width: 70.79vh;\n  height: 100vh;\n  background-repeat: no-repeat;\n  background-size: cover; }\n\n.face--left {\n  left: -70.79vh;\n  -webkit-transform: translateX(-100%);\n          transform: translateX(-100%);\n  background-image: url(" + ___CSS_LOADER_URL___0___ + ");\n  background-position: right center;\n  z-index: 2; }\n\n.face--right-top,\n.face--right-bottom {\n  right: -70.79vh;\n  -webkit-transform: translateX(100%);\n          transform: translateX(100%);\n  background-position: left center; }\n\n.face--right-top {\n  background-image: url(" + ___CSS_LOADER_URL___1___ + ");\n  z-index: 3; }\n\n.face--right-bottom {\n  background-image: url(" + ___CSS_LOADER_URL___2___ + ");\n  z-index: 1; }\n\nmain {\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 0 20px;\n  box-sizing: border-box;\n  font-family: sans-serif; }\n\nh1 {\n  font-size: 48px;\n  font-weight: bold; }\n\nh1 img {\n  width: 100%;\n  max-width: 380px; }\n\nh3 {\n  font-size: 21px;\n  font-weight: bold;\n  font-style: italic;\n  margin-bottom: 1em;\n  letter-spacing: 0.15em;\n  margin-top: 1px;\n  text-align: center; }\n\np {\n  width: 100%;\n  max-width: 400px;\n  font-size: 17px;\n  line-height: 1.21;\n  text-align: center;\n  margin-bottom: 1em;\n  text-align: justify;\n  text-align-last: center; }\n\na,\na:visited,\na:link {\n  color: white; }\n", ""]);
+exports.push([module.i, "/* http://meyerweb.com/eric/tools/css/reset/\n   v4.0 | 20180602\n   License: none (public domain)\n*/\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmain, menu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline; }\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, main, menu, nav, section {\n  display: block; }\n\n/* HTML5 hidden-attribute fix for newer browsers */\n*[hidden] {\n  display: none; }\n\nbody {\n  line-height: 1; }\n\nol, ul {\n  list-style: none; }\n\nblockquote, q {\n  quotes: none; }\n\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: '';\n  content: none; }\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0; }\n\nhtml,\nbody {\n  height: 100%;\n  width: 100vw;\n  overflow: hidden; }\n\nbody {\n  background: whitesmoke; }\n\n* {\n  box-sizing: border-box;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none; }\n\n.faces {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  mix-blend-mode: difference;\n  pointer-events: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none; }\n\n.face {\n  position: absolute;\n  width: 73.02534vh;\n  height: 100vh;\n  background-repeat: no-repeat;\n  background-size: cover; }\n\n.face--left {\n  left: -73.02534vh;\n  -webkit-transform: translateX(-100%);\n          transform: translateX(-100%);\n  background-image: url(" + ___CSS_LOADER_URL___0___ + ");\n  background-position: right center;\n  z-index: 2; }\n\n.face--right-top,\n.face--right-bottom {\n  right: -73.02534vh;\n  -webkit-transform: translateX(100%);\n          transform: translateX(100%);\n  background-position: left center; }\n\n.face--right-top {\n  background-image: url(" + ___CSS_LOADER_URL___1___ + ");\n  z-index: 3; }\n\n.face--right-bottom {\n  background-image: url(" + ___CSS_LOADER_URL___2___ + ");\n  z-index: 1; }\n\nmain {\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 0 20px;\n  box-sizing: border-box;\n  font-family: sans-serif; }\n\nh1 {\n  font-size: 48px;\n  font-weight: bold; }\n\nh1 img {\n  width: 100%;\n  max-width: 380px; }\n\nh3 {\n  font-size: 21px;\n  font-weight: bold;\n  font-style: italic;\n  margin-bottom: 1em;\n  letter-spacing: 0.15em;\n  margin-top: 1px;\n  text-align: center; }\n\np {\n  width: 100%;\n  max-width: 400px;\n  font-size: 17px;\n  line-height: 1.21;\n  text-align: center;\n  margin-bottom: 1em;\n  text-align: justify;\n  text-align-last: center; }\n\na,\na:visited,\na:link {\n  color: white; }\n", ""]);
 
 
 
@@ -17918,36 +17918,36 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./src/sketches/kissers/img/left-v3-custom-feathering.png":
-/*!****************************************************************!*\
-  !*** ./src/sketches/kissers/img/left-v3-custom-feathering.png ***!
-  \****************************************************************/
+/***/ "./src/sketches/kissers/img/left-white-bg.png":
+/*!****************************************************!*\
+  !*** ./src/sketches/kissers/img/left-white-bg.png ***!
+  \****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "./left-v3-custom-feathering.png";
+module.exports = "./left-white-bg.png";
 
 /***/ }),
 
-/***/ "./src/sketches/kissers/img/right-bottom-v3-custom-feathering.png":
-/*!************************************************************************!*\
-  !*** ./src/sketches/kissers/img/right-bottom-v3-custom-feathering.png ***!
-  \************************************************************************/
+/***/ "./src/sketches/kissers/img/right-top-white-bg.png":
+/*!*********************************************************!*\
+  !*** ./src/sketches/kissers/img/right-top-white-bg.png ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "./right-bottom-v3-custom-feathering.png";
+module.exports = "./right-top-white-bg.png";
 
 /***/ }),
 
-/***/ "./src/sketches/kissers/img/right-top-v3-custom-feathering.png":
-/*!*********************************************************************!*\
-  !*** ./src/sketches/kissers/img/right-top-v3-custom-feathering.png ***!
-  \*********************************************************************/
+/***/ "./src/sketches/kissers/img/right-white-bg.png":
+/*!*****************************************************!*\
+  !*** ./src/sketches/kissers/img/right-white-bg.png ***!
+  \*****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "./right-top-v3-custom-feathering.png";
+module.exports = "./right-white-bg.png";
 
 /***/ }),
 
@@ -17995,7 +17995,7 @@ var swapColors = Object(lodash__WEBPACK_IMPORTED_MODULE_1__["throttle"])(functio
 
 var moveTogether = function moveTogether(els, thresholdForContact, overlapArea, distanceFromCenter) {
   swapColors(els, distanceFromCenter, thresholdForContact);
-  var imgWidthInVw = window.innerHeight * .7078 / window.innerWidth * 100;
+  var imgWidthInVw = window.innerHeight * (490 / 671) / window.innerWidth * 100;
   var overlap = overlapArea * imgWidthInVw;
   var leftTranslate = (1 - distanceFromCenter) * (50 + overlap);
   var rightTranslate = -1 * (1 - distanceFromCenter) * (50 + overlap);
@@ -18019,8 +18019,7 @@ var init = function init() {
     rightBottom: rightBottom
   };
   var thresholdForContact = 0.05;
-  var faceAspectRatio = 475 / 671;
-  var overlapArea = 0.12;
+  var overlapArea = 0.1;
   window.addEventListener('mousemove', function (e) {
     handleMouseMove(e, els, thresholdForContact, overlapArea);
   });

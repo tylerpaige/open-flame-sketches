@@ -26,7 +26,7 @@ const swapColors = throttle((els, distanceFromCenter, thresholdForContact) => {
 const moveTogether = (els, thresholdForContact, overlapArea, distanceFromCenter) => {
   
   swapColors(els, distanceFromCenter, thresholdForContact);
-  const imgWidthInVw = (window.innerHeight * .7078) / window.innerWidth * 100;
+  const imgWidthInVw = (window.innerHeight * (490 / 671)) / window.innerWidth * 100;
   const overlap = overlapArea * imgWidthInVw;
   const leftTranslate = (1 - distanceFromCenter) * (50 + overlap);
   const rightTranslate = -1 * (1 - distanceFromCenter) * (50 + overlap);
@@ -47,8 +47,7 @@ const init = () => {
   const rightBottom = document.getElementById('right-bottom');
   const els = { left, rightTop, rightBottom };
   const thresholdForContact = 0.05;
-  const faceAspectRatio = 475 / 671;
-  const overlapArea = 0.12;
+  const overlapArea = 0.1;
   window.addEventListener('mousemove', e => {
     handleMouseMove(e, els, thresholdForContact, overlapArea)
   });
