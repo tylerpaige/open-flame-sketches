@@ -1,0 +1,16 @@
+.instructions {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 75px;
+  height: 75px;
+  transform: rotate(-30deg);
+
+  img {
+    width: 100%;
+  }
+}
+
+html:not(.touchevents) .instructions {
+  display: none;
+}
