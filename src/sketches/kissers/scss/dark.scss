@@ -9,7 +9,8 @@ body {
 $faceWidth : (490 / 671) * 100vh;
 
 body {
-  background: whitesmoke;
+  background: black;
+  color: white;
 }
 * {
   box-sizing: border-box;
@@ -21,13 +22,11 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  // mix-blend-mode: difference;
+  mix-blend-mode: difference;
   pointer-events: none;
   user-select: none;
   overflow: hidden;
-  z-index: 2;
 }
-
 .face {
   position: absolute;
   width: $faceWidth;
@@ -39,7 +38,7 @@ body {
 .face--left {
   left: -1 * $faceWidth;
   transform: translateX(-100%);
-  background-image: url('../img/v4-left.png');
+  background-image: url('../img/left-transparent.png');
   background-position: right center;
   z-index: 2;
 }
@@ -50,11 +49,11 @@ body {
   background-position: left center;
 }
 .face--right-top {
-  background-image: url('../img/v4-right-top.png');
+  background-image: url('../img/right-top-transparent.png');
   z-index: 3;
 }
 .face--right-bottom {
-  background-image: url('../img/v4-right-bottom.png');
+  background-image: url('../img/right-transparent.png');
   z-index: 1;
 }
 
@@ -108,15 +107,4 @@ a:visited,
 a:link {
   color: red;
   font-weight: bold;
-}
-
-main.top {
-  z-index: 3;
-  mix-blend-mode: overlay;
-  position: absolute;
-  color: blue;
-}
-main.bottom {
-  position: relative;
-  z-index: -1;
 }

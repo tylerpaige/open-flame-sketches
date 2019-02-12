@@ -1,10 +1,16 @@
 module.exports = [
   {
-    name : 'kissers',
+    name : 'kissers (light)',
     path : 'kissers.html',
     js : './src/sketches/kissers/js/index.js',
     template : './src/sketches/kissers/templates/index.hbs',
     img : './src/sketches/kissers/img'
+  },
+  {
+    name : 'kissers (dark)',
+    path : 'kissers-dark.html',
+    js : './src/sketches/kissers/js/dark.js',
+    template : './src/sketches/kissers/templates/dark.hbs'
   },
   {
     name : 'plur (default)',
