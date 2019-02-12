@@ -17982,7 +17982,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
 
 var RAF;
-var SHOULD_RESET;
+var MOBILE_DISTANCE_SAVER;
 
 var randomInteger = function randomInteger(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
@@ -18023,6 +18023,7 @@ var mobileLoop = function mobileLoop(startTime, endTime, els, thresholdForContac
   var now = new Date().getTime();
   var distance = 1 - (now - startTime) / (endTime - startTime);
   distance = distance < 0 ? 0 : distance;
+  MOBILE_DISTANCE_SAVER = distance;
   moveTogether(els, thresholdForContact, overlapArea, distance);
   RAF = requestAnimationFrame(function () {
     mobileLoop(startTime, endTime, els, thresholdForContact, overlapArea);
@@ -18031,12 +18032,17 @@ var mobileLoop = function mobileLoop(startTime, endTime, els, thresholdForContac
 
 var mobileResetLoop = function mobileResetLoop(startTime, endTime, els, thresholdForContact, overlapArea) {
   var now = new Date().getTime();
-  var distance = (now - startTime) / (endTime - startTime);
-  distance = distance > 1 ? 1 : distance;
+  var progress = (now - startTime) / (endTime - startTime);
+  var end = 1;
+  var start = MOBILE_DISTANCE_SAVER;
+  var distance = (end - start) * progress + start;
   moveTogether(els, thresholdForContact, overlapArea, distance);
-  RAF = requestAnimationFrame(function () {
-    mobileResetLoop(startTime, endTime, els, thresholdForContact, overlapArea);
-  });
+
+  if (distance < 1) {
+    RAF = requestAnimationFrame(function () {
+      mobileResetLoop(startTime, endTime, els, thresholdForContact, overlapArea);
+    });
+  }
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (function () {
@@ -18063,14 +18069,7 @@ var mobileResetLoop = function mobileResetLoop(startTime, endTime, els, threshol
   window.addEventListener('touchend', function () {
     cancelAnimationFrame(RAF);
     var startTime = new Date().getTime();
-    var duration = 500;
-    var endTime = startTime + duration;
-    mobileResetLoop(startTime, endTime, els, thresholdForContact, overlapArea);
-  });
-  window.addEventListener('touchcancel', function () {
-    cancelAnimationFrame(RAF);
-    var startTime = new Date().getTime();
-    var duration = 500;
+    var duration = 300;
     var endTime = startTime + duration;
     mobileResetLoop(startTime, endTime, els, thresholdForContact, overlapArea);
   });

@@ -1,7 +1,7 @@
 import { throttle } from 'lodash';
 
 let RAF;
-let SHOULD_RESET;
+let MOBILE_DISTANCE_SAVER;
 
 const randomInteger = (min, max) => {
   return Math.floor(Math.random()*(max-min+1)+min);
@@ -41,6 +41,7 @@ const mobileLoop = (startTime, endTime, els, thresholdForContact, overlapArea) =
   const now = new Date().getTime();
   let distance = 1 - (now - startTime) / (endTime - startTime);
   distance = distance < 0 ? 0 : distance;
+  MOBILE_DISTANCE_SAVER = distance;
   moveTogether(els, thresholdForContact, overlapArea, distance);
 
   RAF = requestAnimationFrame(() => {
@@ -50,13 +51,17 @@ const mobileLoop = (startTime, endTime, els, thresholdForContact, overlapArea) =
 
 const mobileResetLoop = (startTime, endTime, els, thresholdForContact, overlapArea) => {
   const now = new Date().getTime();
-  let distance = (now - startTime) / (endTime - startTime);
-  distance = distance > 1 ? 1 : distance;
+  const progress = (now - startTime) / (endTime - startTime);
+  const end = 1;
+  const start = MOBILE_DISTANCE_SAVER;
+  const distance = (end - start) * progress + start;
   moveTogether(els, thresholdForContact, overlapArea, distance);
 
-  RAF = requestAnimationFrame(() => {
-    mobileResetLoop(startTime, endTime, els, thresholdForContact, overlapArea)
-  });
+  if (distance < 1) {
+    RAF = requestAnimationFrame(() => {
+      mobileResetLoop(startTime, endTime, els, thresholdForContact, overlapArea)
+    });
+  } 
 };
 
 
@@ -85,15 +90,7 @@ export default () => {
   window.addEventListener('touchend', () => {
     cancelAnimationFrame(RAF);
     const startTime = new Date().getTime();
-    const duration = 500;
-    const endTime = startTime + duration;
-    mobileResetLoop(startTime, endTime, els, thresholdForContact, overlapArea);
-  });
-
-  window.addEventListener('touchcancel', () => {
-    cancelAnimationFrame(RAF);
-    const startTime = new Date().getTime();
-    const duration = 500;
+    const duration = 300;
     const endTime = startTime + duration;
     mobileResetLoop(startTime, endTime, els, thresholdForContact, overlapArea);
   });
