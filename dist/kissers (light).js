@@ -18022,44 +18022,24 @@ var handleMouseMove = Object(lodash__WEBPACK_IMPORTED_MODULE_0__["throttle"])(fu
 var mobileLoop = function mobileLoop(startTime, endTime, els, thresholdForContact, overlapArea) {
   var now = new Date().getTime();
   var distance = 1 - (now - startTime) / (endTime - startTime);
-  var resetStartTime = now >= endTime ? now : startTime;
-  var resetEndTime = now >= endTime ? now + 2000 : endTime;
+  distance = distance < 0 ? 0 : distance;
   moveTogether(els, thresholdForContact, overlapArea, distance);
   RAF = requestAnimationFrame(function () {
-    mobileLoop(resetStartTime, resetEndTime, els, thresholdForContact, overlapArea);
+    mobileLoop(startTime, endTime, els, thresholdForContact, overlapArea);
   });
 };
 
-var isChrome = function isChrome() {
-  // please note, 
-  // that IE11 now returns undefined again for window.chrome
-  // and new Opera 30 outputs true for window.chrome
-  // but needs to check if window.opr is not undefined
-  // and new IE Edge outputs to true now for window.chrome
-  // and if not iOS Chrome check
-  // so use the below updated condition
-  var isChromium = window.chrome;
-  var winNav = window.navigator;
-  var vendorName = winNav.vendor;
-  var isOpera = typeof window.opr !== "undefined";
-  var isIEedge = winNav.userAgent.indexOf("Edge") > -1;
-  var isIOSChrome = winNav.userAgent.match("CriOS");
-
-  if (isIOSChrome) {
-    return false;
-  } else if (isChromium !== null && typeof isChromium !== "undefined" && vendorName === "Google Inc." && isOpera === false && isIEedge === false) {
-    // is Google Chrome
-    return true;
-  } else {
-    return false;
-  }
+var mobileResetLoop = function mobileResetLoop(startTime, endTime, els, thresholdForContact, overlapArea) {
+  var now = new Date().getTime();
+  var distance = (now - startTime) / (endTime - startTime);
+  distance = distance > 1 ? 1 : distance;
+  moveTogether(els, thresholdForContact, overlapArea, distance);
+  RAF = requestAnimationFrame(function () {
+    mobileResetLoop(startTime, endTime, els, thresholdForContact, overlapArea);
+  });
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (function () {
-  if (isChrome()) {
-    document.body.classList.add('is-chrome');
-  }
-
   var left = document.getElementById('left');
   var rightTop = document.getElementById('right-top');
   var rightBottom = document.getElementById('right-bottom');
@@ -18082,9 +18062,17 @@ var isChrome = function isChrome() {
   });
   window.addEventListener('touchend', function () {
     cancelAnimationFrame(RAF);
+    var startTime = new Date().getTime();
+    var duration = 500;
+    var endTime = startTime + duration;
+    mobileResetLoop(startTime, endTime, els, thresholdForContact, overlapArea);
   });
   window.addEventListener('touchcancel', function () {
     cancelAnimationFrame(RAF);
+    var startTime = new Date().getTime();
+    var duration = 500;
+    var endTime = startTime + duration;
+    mobileResetLoop(startTime, endTime, els, thresholdForContact, overlapArea);
   });
 });
 

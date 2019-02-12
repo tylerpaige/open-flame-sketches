@@ -39,53 +39,29 @@ const handleMouseMove = throttle((e, els, thresholdForContact, overlapArea) => {
 
 const mobileLoop = (startTime, endTime, els, thresholdForContact, overlapArea) => {
   const now = new Date().getTime();
-  const distance = 1 - (now - startTime) / (endTime - startTime);
-  const resetStartTime = now >= endTime ? now : startTime;
-  const resetEndTime = now >= endTime ? now + 2000 : endTime;
+  let distance = 1 - (now - startTime) / (endTime - startTime);
+  distance = distance < 0 ? 0 : distance;
   moveTogether(els, thresholdForContact, overlapArea, distance);
 
   RAF = requestAnimationFrame(() => {
-    mobileLoop(resetStartTime, resetEndTime, els, thresholdForContact, overlapArea)
+    mobileLoop(startTime, endTime, els, thresholdForContact, overlapArea)
   });
 };
 
-const isChrome = () => {
-  // please note, 
-  // that IE11 now returns undefined again for window.chrome
-  // and new Opera 30 outputs true for window.chrome
-  // but needs to check if window.opr is not undefined
-  // and new IE Edge outputs to true now for window.chrome
-  // and if not iOS Chrome check
-  // so use the below updated condition
-  var isChromium = window.chrome;
-  var winNav = window.navigator;
-  var vendorName = winNav.vendor;
-  var isOpera = typeof window.opr !== "undefined";
-  var isIEedge = winNav.userAgent.indexOf("Edge") > -1;
-  var isIOSChrome = winNav.userAgent.match("CriOS");
+const mobileResetLoop = (startTime, endTime, els, thresholdForContact, overlapArea) => {
+  const now = new Date().getTime();
+  let distance = (now - startTime) / (endTime - startTime);
+  distance = distance > 1 ? 1 : distance;
+  moveTogether(els, thresholdForContact, overlapArea, distance);
 
-  if (isIOSChrome) {
-    return false;
-  } else if(
-    isChromium !== null &&
-    typeof isChromium !== "undefined" &&
-    vendorName === "Google Inc." &&
-    isOpera === false &&
-    isIEedge === false
-  ) {
-    // is Google Chrome
-    return true;
-  } else { 
-    return false;
-  }
-}
+  RAF = requestAnimationFrame(() => {
+    mobileResetLoop(startTime, endTime, els, thresholdForContact, overlapArea)
+  });
+};
 
 
-export default () => {
-  if (isChrome()) {
-    document.body.classList.add('is-chrome');
-  }
 
+export default () => { 
   const left = document.getElementById('left');
   const rightTop = document.getElementById('right-top');
   const rightBottom = document.getElementById('right-bottom');
@@ -108,10 +84,18 @@ export default () => {
 
   window.addEventListener('touchend', () => {
     cancelAnimationFrame(RAF);
+    const startTime = new Date().getTime();
+    const duration = 500;
+    const endTime = startTime + duration;
+    mobileResetLoop(startTime, endTime, els, thresholdForContact, overlapArea);
   });
 
   window.addEventListener('touchcancel', () => {
     cancelAnimationFrame(RAF);
+    const startTime = new Date().getTime();
+    const duration = 500;
+    const endTime = startTime + duration;
+    mobileResetLoop(startTime, endTime, els, thresholdForContact, overlapArea);
   });
 
 };
