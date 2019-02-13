@@ -25,6 +25,9 @@ body.left-right {
     font-family: 'Sometype Mono', monospace;
     font-size: 20px;
   }
+  p + p {
+    margin-top: 1em;
+  }
   p:nth-child(odd) {
     text-align: left;
     margin-right: auto;
