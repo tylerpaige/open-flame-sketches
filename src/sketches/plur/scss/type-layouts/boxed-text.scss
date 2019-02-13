@@ -1,3 +1,20 @@
+$red: #BA4848;
+$orange: #EF9124;
+$yellowGreen: #d0b443;
+//cool hues
+$cobaltBlue: #064bd3;
+$powderBlue: #74b6d0;
+$seaGreen: #17a576;
+
+//Light saturations
+//warm hues
+$palePink: #e5cad1;
+$palePeach: #e29f8f; //might need to be refined
+//cool hues
+$paleSeafoam: #a5c69c;
+$paleSlate: #8493b1;
+$paleViolet: #c9c7ed;
+
 body.boxed-text {
 
   main {
@@ -44,5 +61,12 @@ body.boxed-text {
     font-weight: 700;
     text-decoration: underline;
     color: black;
+  }
+
+  $colors: $palePeach, $paleSeafoam, $palePink, $paleViolet, $powderBlue, $orange;
+  @for $n from 1 through 6 {
+    p:nth-of-type(#{$n}):hover {
+      background-color: nth($colors, $n);
+    }
   }
 }
