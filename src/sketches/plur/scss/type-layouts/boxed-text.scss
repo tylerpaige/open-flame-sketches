@@ -1,0 +1,48 @@
+body.boxed-text {
+
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  p {
+    border-style: solid;
+    border-width: 3px 2px;
+    border-color: #333;
+
+    padding: 5px 10px;
+
+    font-family: 'Cantarell', sans-serif;
+    text-transform: uppercase;
+
+    flex: 1 1 auto;
+    order: 2;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  p.intro {
+    font-size: 21px;
+    font-weight: 700;
+
+    padding: 5px 25px;
+
+    flex: 2 1 auto;
+    order: 1;
+
+  }
+  p.link {
+    order: 3;
+  }
+
+  a,
+  a:link,
+  a:visited {
+    font-weight: 700;
+    text-decoration: underline;
+    color: black;
+  }
+}

@@ -23,7 +23,13 @@ module.exports = [
     name : 'plur (candy flames)',
     path : 'plur-candy.html',
     js : './src/sketches/plur/js/index.js',
-    template : './src/sketches/plur/templates/flames.hbs'
+    template : './src/sketches/plur/templates/candy-flames.hbs'
+  },
+  {
+    name : 'plur (candy flames + boxed text)',
+    path : 'plur-candy-boxed.html',
+    js : './src/sketches/plur/js/index.js',
+    template : './src/sketches/plur/templates/candy-flames-boxed-text.hbs'
   },
   {
     name : 'plur (inky flames)',

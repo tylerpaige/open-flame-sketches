@@ -1,4 +1,9 @@
 @import '~reset-css';
+
+* {
+  box-sizing: border-box;
+}
+
 html,
 body {
   height: 100%;
@@ -16,6 +21,8 @@ body {
   }
 }
 
+@import 'mixins';
 @import 'grid';
 @import 'content';
-@import 'color-schemes/index'
+@import 'color-schemes/index';
+@import 'type-layouts/index';

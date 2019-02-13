@@ -1,0 +1,21 @@
+@mixin highlight($highlight-color, $offset-x : 5px, $offset-y: 5px, $stroke: 2px) {
+  $stroke-offset-x: $offset-x + $stroke;
+  $stroke-offset-y: $offset-y + $stroke;
+
+  background-color: $highlight-color;
+  box-shadow:
+    // $stroke-offset-x $stroke-offset-y 0px black,
+    // $stroke-offset-x*(-1) $stroke-offset-y*(-1) 0 black,
+    // $stroke-offset-x $stroke-offset-y*(-1) 0 black,
+    // $stroke-offset-x*(-1) $stroke-offset-y 0 black,
+
+    $offset-x $offset-y 0 $highlight-color,
+    $offset-x*(-1) $offset-y*(-1) 0 $highlight-color,
+    $offset-x $offset-y*(-1) 0 $highlight-color,
+    $offset-x*(-1) $offset-y 0 $highlight-color;
+  -webkit-box-decoration-break: clone;
+  -ms-box-decoration-break: clone;
+  -o-box-decoration-break: clone;
+  box-decoration-break: clone;
+  margin-right: $offset-x * 1.5;
+}

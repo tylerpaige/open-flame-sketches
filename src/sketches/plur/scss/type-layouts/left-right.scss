@@ -1,0 +1,66 @@
+@media screen and (min-aspect-ratio : 1 / 1) {
+  body.left-right main {
+
+  }
+}
+body.left-right {
+  
+  main {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+  
+  a,
+  a:link,
+  a:visited {
+    color: black;
+    text-decoration: underline;
+    font-weight: 700;
+  }
+  
+  p {
+    width: 75%;
+    font-family: 'Sometype Mono', monospace;
+    font-size: 20px;
+  }
+  p:nth-child(odd) {
+    text-align: left;
+    margin-right: auto;
+  }
+  p:nth-child(even) {
+    text-align: right;
+    margin-left: auto;
+  }
+  p:first-child {
+    text-align: center;
+    width: 100%;
+  }
+  p.link {
+    border-style: solid;
+    border-color: #333;
+    border-width: 5px 3px;
+    text-transform: uppercase;
+    text-align: center;
+    width: 100%;
+    margin: 0;
+    padding: 10px 10px;
+  }
+  p.link a,
+  p.link a:link,
+  p.link a:visited {
+    text-decoration: none;
+    font-weight: normal;
+  }
+   
+  
+  section.footer {
+    margin: 10px;
+    border-style: solid;
+    border-color: black;
+    border-width: 4px 3px;
+    text-transform: uppercase;
+    padding: 5px;
+  }
+}
