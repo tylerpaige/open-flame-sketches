@@ -1,3 +1,4 @@
+@import '~mathsass';
 
 $dividingLine : (46 / 76);
 
@@ -36,7 +37,7 @@ $dividingLine : (46 / 76);
   animation-duration: 5s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
-  animation-direction: alternate;
+  // animation-direction: alternate;
 }
 .cell--n {
   margin-right: 25px
@@ -64,7 +65,7 @@ $dividingLine : (46 / 76);
 .row .cell {
   animation-duration: 20s;
   animation-iteration-count: infinite;
-  animation-direction: alternate;
+  // animation-direction: alternate;
   // animation-timing-function: cubic-bezier(.58,.68,.3,1);
 }
 .row:first-child .cell {
@@ -91,18 +92,20 @@ $dividingLine : (46 / 76);
   }
 }
 
+$minY: 0.1;
+$maxY: 1.0;
 
 @keyframes squishTop {
-  0% {
-    transform: scaleY(1);
-  }
-  25% {
-    transform: scaleY(0.1);
-    // transform: scaleY(0.1) rotate(-3deg);
-    // transform: scaleY(0.1) skewX(3deg);
-  }
-  50% {
-    transform: scaleY(1);
+  /* from π thru 2π */
+  @for $i from 1 through 50 {
+    $percentage: $i * 1%;
+    $x : ($i / 50) * 3.14598 + 3.14598;
+    $y : sin($x) + 1;
+    $scaleY: $y * ($maxY - $minY) + $minY;
+
+    #{$percentage} {
+      transform: scaleY(#{$scaleY});
+    }
   }
   100% {
     transform: scaleY(1);
@@ -115,10 +118,15 @@ $dividingLine : (46 / 76);
   50% {
     transform: scaleY(1);
   }
-  75% {
-    transform: scaleY(0.1);
-  }
-  100% {
-    transform: scaleY(1);
+  /* from π thru 2π */
+  @for $i from 51 through 100 {
+    $percentage: $i * 1%;
+    $x : (($i - 50) / 50) * 3.14598 + 3.14598;
+    $y : sin($x) + 1;
+    $scaleY: $y * ($maxY - $minY) + $minY;
+
+    #{$percentage} {
+      transform: scaleY(#{$scaleY});
+    }
   }
 }
