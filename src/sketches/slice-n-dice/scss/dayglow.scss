@@ -8,8 +8,8 @@ $colorPairs : (#B95E82, #B95E52), (#54ACC7, #9DB1FC), (#ADA13E, #5EA13E), (#173A
   position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100svw;
+  height: 100svh;
 }
 
 * {
@@ -18,6 +18,7 @@ $colorPairs : (#B95E82, #B95E52), (#54ACC7, #9DB1FC), (#ADA13E, #5EA13E), (#173A
 
 .container {
   @include fullbleed();
+  overflow: hidden
 }
 
 .panel,
@@ -164,9 +165,10 @@ h3 {
   font-weight: bold;
 }
 p {
-  font-size: 25px;
+  font-size: 14px;
   font-weight: bold;
   color: white;
+  padding: 1em;
 }
 span{
   // background-color: #4ae4c3;
